@@ -1,5 +1,7 @@
 module Mutations
-  class CreateUserMutation < Mutations::BaseMutation
+  class Users::Create < Mutations::BaseMutation
+    graphql_name "CreateUser"
+
     argument :email, String, required: true
     argument :username, String, required: true
 
@@ -10,10 +12,7 @@ module Mutations
       user = User.new(email: email, username: username)
       return {user: user, errors: []} if user.save
 
-      {
-        user: nil,
-        errors: validation_errors(user)
-      }
+      {user: nil, errors: validation_errors(user)}
     end
   end
 end

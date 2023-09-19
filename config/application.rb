@@ -22,16 +22,9 @@ module Qury
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.autoload_paths << Rails.root.join("lib")
+    config.time_zone = "Asia/Ho_Chi_Minh"
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
-
-    # Don't generate system test files.
     config.generators.system_tests = nil
     config.generators do |g|
       g.stylesheets false

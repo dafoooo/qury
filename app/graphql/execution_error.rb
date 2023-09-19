@@ -1,19 +1,9 @@
 module ExecutionError
-  def not_found_error
+  def unauthorized_error
+    GraphQL::ExecutionError.new "Unauthorized", extensions: {code: 401}
   end
 
-  def unauthenticated_error
-    GraphQL::ExecutionError.new "Not authenticated"
+  def not_found_error(model:, id:)
+    GraphQL::ExecutionError.new "Not found", extensions: {code: 404, model: model, id: id}
   end
-
-  # def validation_error obj
-  #   obj.errors.map do |error|
-  #     {
-  #       attribute: error.attribute,
-  #       error: error.type
-  #     }
-  #   end
-
-  # GraphQL::ExecutionError.new "Validation error", extensions: {errors}
-  # end
 end
