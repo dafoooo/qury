@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     decoded = Qury::Auth.decode(token)
     return unless decoded
 
-    if Time.at(decoded["exp"]) - Settings.jwt.refreshable.minutes < Time.now
+    if Time.at(decoded["exp"]) - Settings.jwt.refreshable.hours < Time.now
       decoded.delete("exp")
 
       cookies.signed[Settings.jwt.cookie.name] = {

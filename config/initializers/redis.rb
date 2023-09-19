@@ -1,1 +1,1 @@
-# $redis = Qury::RedisClient.new
+$redis = Qury::RedisClient.new

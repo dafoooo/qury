@@ -10,6 +10,8 @@ module Mutations
     end
 
     def validation_errors(obj)
+      return unless obj.errors
+
       obj.errors.map do |error|
         {
           attribute: error.attribute,

@@ -1,7 +1,7 @@
 require "jwt"
 
 class Qury::Auth
-  def self.encode(payload, exp = 2.minutes.from_now.to_i)
+  def self.encode(payload, exp = Settings.jwt.exp.hours.from_now.to_i)
     payload[:exp] = exp
 
     JWT.encode(
@@ -26,15 +26,11 @@ class Qury::Auth
 
   def self.revoke(token)
     token_key = "denied::#{token}"
-    redis.set(token_key, 1, ex: Settings.jwt.exp.hours.seconds.to_i)
+    $redis.set(token_key, 1, ex: Settings.jwt.exp.hours.to_i)
   end
 
   def self.revoked?(token)
     token_key = "denied::#{token}"
-    redis.get(token_key).present?
-  end
-
-  def self.redis
-    @redis ||= Qury::RedisClient.new
+    $redis.get(token_key).present?
   end
 end

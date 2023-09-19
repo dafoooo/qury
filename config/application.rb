@@ -22,15 +22,29 @@ module Qury
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    config.autoload_paths << Rails.root.join("lib")
+
+    # Load libraries
+    config.autoload_paths.concat [
+      Rails.root.join("lib/"),
+      Rails.root.join("app/graphql/loaders"),
+      Rails.root.join("app/graphql/resolvers")
+    ]
+    config.before_initialize do
+      Dir[Rails.root.join("lib/qury/*")].each do |f|
+        require f
+      end
+    end
+
+    # Config timezone
     config.time_zone = "Asia/Ho_Chi_Minh"
 
-    config.generators.system_tests = nil
+    # Omit unused generation content
     config.generators do |g|
+      g.channel assets: false
       g.stylesheets false
       g.javascripts false
       g.helper false
-      g.channel assets: false
+      g.system_tests nil
     end
   end
 end

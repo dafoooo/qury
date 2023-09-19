@@ -3,7 +3,7 @@ module Mutations
     class SignIn < BaseMutation
       graphql_name "SignIn"
       argument :credentials, Types::Inputs::CredentialsInput, required: false
-      field :user, Types::Models::UserType, null: true
+      field :user, Types::UserType, null: true
 
       def ready?(**args)
         true

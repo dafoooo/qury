@@ -17,6 +17,7 @@ gem "rack-cors"
 
 # GraphQL
 gem "graphql"
+gem "graphql-batch"
 
 # Authentication
 gem "jwt"
@@ -30,4 +31,5 @@ group :development do
   gem "graphiql-rails"
   gem "pry-rails"
   gem "standard"
+  gem "faker"
 end

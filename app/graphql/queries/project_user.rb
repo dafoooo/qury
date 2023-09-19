@@ -1,11 +1,11 @@
 module Queries
-  class User < BaseQuery
-    description "Get user by ID"
+  class ProjectUser < BaseQuery
+    description "Get project_user by ID"
     argument :id, ID, required: true
-    type Types::UserType, null: false
+    type Types::ProjectUserType, null: false
 
     def resolve(id:)
-      ::User.find(id)
+      ::ProjectUser.find(id)
     rescue ActiveRecord::RecordNotFound => e
       raise not_found_error(model: e.model, id: e.id)
     end

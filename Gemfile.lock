@@ -114,12 +114,17 @@ GEM
       dry-schema (>= 1.12, < 2)
       zeitwerk (~> 2.6)
     erubi (1.12.0)
+    faker (3.2.1)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     graphiql-rails (1.9.0)
       railties
       sprockets-rails
     graphql (2.1.0)
+    graphql-batch (0.5.3)
+      graphql (>= 1.12.18, < 3)
+      promise.rb (~> 0.7.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -162,6 +167,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    promise.rb (0.7.4)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -273,8 +279,10 @@ DEPENDENCIES
   bcrypt
   bootsnap
   config
+  faker
   graphiql-rails
   graphql
+  graphql-batch
   importmap-rails
   jbuilder
   jwt

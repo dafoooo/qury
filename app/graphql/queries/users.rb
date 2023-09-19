@@ -1,10 +1,10 @@
 module Queries
   class Users < BaseQuery
     description "Get all users"
-    type [Types::Models::UserType], null: false
+    type [Types::UserType], null: false
 
     def resolve
-      ::User.includes(:projects).all
+      ::User.all
     end
   end
 end

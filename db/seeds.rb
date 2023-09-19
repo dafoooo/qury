@@ -1,3 +1,12 @@
+# Master Data
+puts "Cleaning ... "
+[M::Color].each(&:destroy_all)
+# Colors
+puts "Importing colors ..."
+M::Color::COLOR_PALETTE.each do |k, v|
+  M::Color.create!(key: k, value: v)
+end
+
 # Users
 [ProjectUser, User, Project].each(&:destroy_all)
 
@@ -7,7 +16,8 @@
   User.create!(
     {
       username: username,
-      email: Faker::Internet.email(name: username)
+      email: Faker::Internet.email(name: username),
+      password: "Aa@123456"
     }
   )
 end
